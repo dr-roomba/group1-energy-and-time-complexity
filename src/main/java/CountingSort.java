@@ -1,7 +1,7 @@
 public class CountingSort {
     public static void CountingSort(int[] input, int[] output, int k) {
-        int[] temp = new int[k];
-        for (int i = 0; i < k; i++) {
+        int[] temp = new int[k+1];
+        for (int i = 0; i <= k; i++) {
             temp[i] = 0;
         }
         for (int i = 0; i < input.length; i++) {
