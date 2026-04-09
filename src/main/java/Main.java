@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] ints = {2, 6, 1, 8 ,4, 3, 5, 10, 7, 9};
+        int[] ints = {2, 6, 1, 8, 4, 3, 5, 10, 7, 9};
         int[] out = new int[10];
 
         CountingSort.CountingSort(ints, out, 10);
