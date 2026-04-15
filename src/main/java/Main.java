@@ -51,32 +51,6 @@ public class Main {
         // int[] part = Utils.fileToArray("part.txt");
         // System.out.println(Utils.arrToString(part));
 
-        String dir = "arrays/";
-
-        int size = 25_000;
-        while (size < 1_000_000) {
-            
-            System.out.println(size);
-
-            int[] rand = GenerateArrays.generateRandom(size);
-            Utils.arrToFile(rand, dir + "rand_" + size);
-            
-            int[] sortd = GenerateArrays.generateSorted(size);
-            Utils.arrToFile(sortd, dir + "sortd_" + size);
-
-            int[] rev = GenerateArrays.generateReverse(size);
-            Utils.arrToFile(rev, dir + "rev_" + size);
-
-            int[] part = GenerateArrays.generatePartiallySorted(size);
-            Utils.arrToFile(part, dir + "part_" + size);
-
-            if (size < 100_000) {
-                size += 25_000;
-            }else {
-                size += 100_000;
-            }
-
-        }
 
     }
 
