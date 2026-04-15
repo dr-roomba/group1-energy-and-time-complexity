@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,6 +10,13 @@ public class Main {
         CountingSort.CountingSort(ints, out, 10);
         System.out.println(Utils.arrToString(ints));
         System.out.println(Utils.arrToString(out));
+
+        try {
+            Utils.arrToFile(ints, "ints.txt");
+        }catch (IOException e) {
+            System.out.println("Error writng to file");
+            e.printStackTrace();
+        }
 
     }
 
