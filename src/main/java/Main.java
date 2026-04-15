@@ -3,27 +3,80 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
 
-        int[] ints = {2, 6, 1, 8, 4, 3, 5, 10, 7, 9};
-        int[] out = new int[10];
+        // int[] ints = {2, 6, 1, 8, 4, 3, 5, 10, 7, 9};
+        // int[] out = new int[10];
 
-        CountingSort.CountingSort(ints, out, 10);
-        System.out.println(Utils.arrToString(ints));
-        System.out.println(Utils.arrToString(out));
+        // CountingSort.CountingSort(ints, out, 10);
+        // System.out.println(Utils.arrToString(ints));
+        // System.out.println(Utils.arrToString(out));
 
-        try {
-            Utils.arrToFile(ints, "ints.txt");
-        }catch (IOException e) {
-            System.out.println("Error writng to file");
-            e.printStackTrace();
+        // try {
+        //     Utils.arrToFile(ints, "ints.txt");
+        // }catch (IOException e) {
+        //     System.out.println("Error writng to file");
+        //     e.printStackTrace();
+        // }
+
+        // int[] unsorted = Utils.fileToArray("ints.txt");
+        // int[] sorted = Arrays.copyOf(unsorted, unsorted.length);
+        // QuickSort.quickSort(sorted, 0, sorted.length - 1);
+        // System.out.println(Utils.arrToString(ints));
+        // System.out.println(Utils.arrToString(out));
+
+        // int size = 100;
+
+        // // int[] rand = GenerateArrays.generateRandom(size);
+        // // Utils.arrToFile(rand, "rand.txt");
+        
+        // // int[] sortd = GenerateArrays.generateSorted(size);
+        // // Utils.arrToFile(sortd, "sortd.txt");
+
+        // // int[] rev = GenerateArrays.generateReverse(size);
+        // // Utils.arrToFile(rev, "rev.txt");
+
+        // // int[] part = GenerateArrays.generatePartiallySorted(size);
+        // // Utils.arrToFile(part, "part.txt");
+
+        // int[] rand = Utils.fileToArray("rand.txt");
+        // System.out.println(Utils.arrToString(rand));
+
+        // int[] sortd = Utils.fileToArray("sortd.txt");
+        // System.out.println(Utils.arrToString(sortd));
+
+        // int[] rev = Utils.fileToArray("rev.txt");
+        // System.out.println(Utils.arrToString(rev));
+
+        // int[] part = Utils.fileToArray("part.txt");
+        // System.out.println(Utils.arrToString(part));
+
+        String dir = "arrays/";
+
+        int size = 25_000;
+        while (size < 1_000_000) {
+            
+            System.out.println(size);
+
+            int[] rand = GenerateArrays.generateRandom(size);
+            Utils.arrToFile(rand, dir + "rand_" + size);
+            
+            int[] sortd = GenerateArrays.generateSorted(size);
+            Utils.arrToFile(sortd, dir + "sortd_" + size);
+
+            int[] rev = GenerateArrays.generateReverse(size);
+            Utils.arrToFile(rev, dir + "rev_" + size);
+
+            int[] part = GenerateArrays.generatePartiallySorted(size);
+            Utils.arrToFile(part, dir + "part_" + size);
+
+            if (size < 100_000) {
+                size += 25_000;
+            }else {
+                size += 100_000;
+            }
+
         }
-
-        int[] unsorted = Utils.fileToArray("ints.txt");
-        int[] sorted = Arrays.copyOf(unsorted, unsorted.length);
-        QuickSort.quickSort(sorted, 0, sorted.length - 1);
-        System.out.println(Utils.arrToString(ints));
-        System.out.println(Utils.arrToString(out));
 
     }
 

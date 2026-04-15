@@ -29,7 +29,7 @@ public class Utils {
         buffer.append(arr.length + ",");
 
         for (int i = 0; i < arr.length; i++) {
-            buffer.append(i + ",");
+            buffer.append(arr[i] + ",");
 
             if (i + 1 == arr.length) {
                 buffer.setLength(buffer.length() - 1);
