@@ -26,17 +26,13 @@ public class Utils {
         BufferedWriter out = new BufferedWriter(new FileWriter(filename));
         StringBuilder buffer = new StringBuilder();
 
-        out.write(arr.length + "\n");
+        buffer.append(arr.length + ",");
 
         for (int i = 0; i < arr.length; i++) {
-            buffer.append(i + ", ");
+            buffer.append(i + ",");
 
-            if (buffer.length() >= 512) {
-                out.write(buffer.toString());
-                buffer.setLength(0);
-            }
             if (i + 1 == arr.length) {
-                buffer.setLength(buffer.length() - 2);
+                buffer.setLength(buffer.length() - 1);
             }
         }
         out.write(buffer.toString());

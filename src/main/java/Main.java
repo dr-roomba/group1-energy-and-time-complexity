@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main {
 
@@ -17,6 +18,12 @@ public class Main {
             System.out.println("Error writng to file");
             e.printStackTrace();
         }
+
+        int[] unsorted = Utils.fileToArray("ints.txt");
+        int[] sorted = Arrays.copyOf(unsorted, unsorted.length);
+        QuickSort.quickSort(sorted, 0, sorted.length - 1);
+        System.out.println(Utils.arrToString(ints));
+        System.out.println(Utils.arrToString(out));
 
     }
 
