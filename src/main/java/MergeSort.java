@@ -65,4 +65,12 @@ public class MergeSort {
             k++;
         }
     }
+
+    public static void main(String[] args) {
+
+        int[] arr = Utils.fileToArray(args[0]);
+        mergeSort(arr, 0, arr.length - 1);
+
+    }
+
 }

@@ -15,4 +15,13 @@ public class CountingSort {
             temp[input[i]]--;
         }
     }
+
+    public static void main(String[] args) {
+
+        int[] arr = Utils.fileToArray(args[0]);
+        int[] out = new int[100000000];
+        CountingSort(arr, out, out.length);
+
+    }
+
 }

@@ -10,4 +10,11 @@ public class BubbleSort {
             }
         }
     }
+
+    public static void main(String[] args) {
+
+        int[] arr = Utils.fileToArray(args[0]);
+        BubbleSort(arr);
+
+    }
 }

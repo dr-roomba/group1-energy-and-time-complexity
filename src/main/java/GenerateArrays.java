@@ -3,8 +3,11 @@ import java.util.Random;
 
 public class GenerateArrays {
     public static int[] generateRandom(int size) {
+        int[] arr = new int[size];
         Random random = new Random();
-        int[] arr =  random.ints().limit(size).distinct().toArray();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt();
+        }
         return arr;
     }
 
@@ -18,8 +21,8 @@ public class GenerateArrays {
 
     public static int[] generateReverse(int size) {
         int[] arr = new int[size];
-        for (int i = 1; i <= size; i++) {
-            arr[size - i] = i;
+        for (int i = 0; i < size; i++) {
+            arr[size - i - 1] = i;
         }
         return arr;
     }
@@ -33,6 +36,38 @@ public class GenerateArrays {
             QuickSort.quickSort(arr, i - offset, i);
         }
         return arr;
+
+    }
+
+    public static int[] generateQuickSortBest(int size) {
+        int[] arr = generateRandom(size);
+        quickHelper(arr, 0, size - 1);
+        return arr;
+    }
+
+    // public static void quickbesthelper(int[] arr, int start, int end) {
+    //     if (end <= start) {
+    //         return;
+    //     }
+
+    //     quickbesthelper(arr, start, idx - 1);
+    //     quickbesthelper(arr, idx + 1, end);
+    // }
+
+
+    public static void quickHelper(int[] arr, int start, int end) {
+        if (end <= start) {
+            return;
+        }
+
+        int idx = QuickSort.partion(arr, start, end);
+        int temp = arr[start];
+        arr[start] = arr[idx];
+        arr[idx] = temp;
+
+        int j = QuickSort.partion(arr, start, end);
+        quickHelper(arr, start, j-1);
+        quickHelper(arr, j + 1, end);
 
     }
 
@@ -94,20 +129,23 @@ public class GenerateArrays {
             
             System.out.println(size);
 
-            int[] rand = GenerateArrays.generateRandom(size);
-            Utils.arrToFile(rand, dir + "rand_" + size);
+            // int[] rand = GenerateArrays.generateRandom(size);
+            // Utils.arrToFile(rand, dir + "rand_" + size);
             
-            int[] sortd = GenerateArrays.generateSorted(size);
-            Utils.arrToFile(sortd, dir + "sortd_" + size);
+            // int[] sortd = GenerateArrays.generateSorted(size);
+            // Utils.arrToFile(sortd, dir + "sortd_" + size);
 
-            int[] rev = GenerateArrays.generateReverse(size);
-            Utils.arrToFile(rev, dir + "rev_" + size);
+            // int[] rev = GenerateArrays.generateReverse(size);
+            // Utils.arrToFile(rev, dir + "rev_" + size);
 
-            int[] part = GenerateArrays.generatePartiallySorted(size);
-            Utils.arrToFile(part, dir + "part_" + size);
+            // int[] part = GenerateArrays.generatePartiallySorted(size);
+            // Utils.arrToFile(part, dir + "part_" + size);
 
-            int[] alt = GenerateArrays.generateMergeSortWorstCase(size);
-            Utils.arrToFile(alt, dir + "alt_" + size);
+            // int[] alt = GenerateArrays.generateMergeSortWorstCase(size);
+            // Utils.arrToFile(alt, dir + "alt_" + size);
+
+            int[] quickbest = GenerateArrays.generateQuickSortBest(size);
+            Utils.arrToFile(quickbest, dir + "qb_" + size);
 
             if (size < 100_000) {
                 size += 25_000;
