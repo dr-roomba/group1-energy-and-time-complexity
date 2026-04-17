@@ -8,7 +8,6 @@
 
 #define RUNTIME 1
 
-
 int main (int argc, char **argv) 
 { char command[500]="",language[500]="", test[500]="", path[500]="";
   int  ntimes = 10;
@@ -44,12 +43,16 @@ int main (int argc, char **argv)
   rapl_init(core);
 
   //fprintf(fp,"Package , CPU , GPU , DRAM? , Time (sec) \n");
+
+  double avgEnergy = 0;
+  double avgTime = 0;
+  double energy;
   
   for (i = 0 ; i < ntimes ; i++)
     {  
  
       fprintf(stdout, "Round: %d\n", i);
-    	fprintf(fp,"%s ; ",test);
+    	// fprintf(fp,"%s ; ",test);
  	
 	      
 		#ifdef RUNTIME
@@ -61,7 +64,7 @@ int main (int argc, char **argv)
 	
         system(command);
 
-	rapl_after(fp,core);
+	energy = rapl_after(fp,core);
 
 		#ifdef RUNTIME
 			//end = clock();
@@ -69,13 +72,19 @@ int main (int argc, char **argv)
 			gettimeofday(&tva,0);
 			time_spent = (tva.tv_sec-tvb.tv_sec)*1000000 + tva.tv_usec-tvb.tv_usec;
 			time_spent = time_spent / 1000;
-		#endif
+      avgTime += time_spent;
+    #endif
+  avgEnergy += energy;
 			
 
 		#ifdef RUNTIME	
-			fprintf(fp," %G \n",time_spent);
+			// fprintf(fp," %G \n",time_spent);
 		#endif	
     }
+    avgEnergy /= ntimes;
+    avgTime /= ntimes;
+    fprintf(fp,"%s,%.18lf,%G\n",test, avgEnergy, avgTime);
+
     
 
   fclose(fp);

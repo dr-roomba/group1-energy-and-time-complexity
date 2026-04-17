@@ -93,7 +93,7 @@ public class QuickSort {
     public static void main(String[] args) {
 
         int[] arr = Utils.fileToArray(args[0]);
-        mquickSort(arr);
+        quickSort(arr, 0, arr.length);
 
     }
 

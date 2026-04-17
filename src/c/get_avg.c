@@ -6,32 +6,18 @@ int main (int argc, char * argv[]) {
 
     char testName[20];
     char oldName[20] = "";
-    double energy, totEnergy = 0;
-    double time, totTime = 0;
+    double energy = 0, totEnergy = 0;
+    double time = 0, totTime = 0;
     int num = 0;
 
     puts("Size,Energy,Time");
     while (!feof(stdin)) {
 
-        totEnergy = energy;
-        totTime = time;
-        num = 1;
+        int numRead = fscanf(stdin, "%s %lf %lf %lf", testName, &energy, &energy, &time);
 
-        do {
-            fscanf(stdin, "%s %lf %lf %lf", testName, &energy, &energy, &time);
-            totEnergy += energy;
-            totTime += time;
-            num++;
-            printf("%s %lf %lf\n", testName, energy, time);
-
-        } while (!feof(stdin) && strcmp(oldName, testName) == 0);
-        // strcpy(oldName, testName);
-
-        if (num > 0) {
-
+        if (numRead < 4) {
             totEnergy /= num;
             totTime /= num;
-            // printf("Name:%s Energy:%lf Time:%lf\n", oldName, totEnergy, totTime);
             int idx = 0;
             while (oldName[idx] != '_') {
                 idx++;
@@ -39,12 +25,32 @@ int main (int argc, char * argv[]) {
             idx++;
             printf("%s,%lf,%lf\n", &oldName[idx], totEnergy, totTime);
 
+            return 0;
         }
+
+        if (strcmp(oldName,testName) == 0) {
+            totEnergy += energy;
+            totTime += time;
+            num++;
+            continue;
+        }
+
+        if (oldName[0] != '\0') {
+            totEnergy /= num;
+            totTime /= num;
+            int idx = 0;
+            while (oldName[idx] != '_') {
+                idx++;
+            }
+            idx++;
+            printf("%s,%lf,%lf\n", &oldName[idx], totEnergy, totTime);
+        }
+
         strcpy(oldName, testName);
+        totEnergy = energy;
+        totTime = time;
+        num = 1;
 
     }
-
-    // fclose(fp);
-    // free(line);
 
 }

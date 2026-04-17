@@ -59,4 +59,4 @@ int rapl_init(int core);
 void show_power_info(int core);
 void show_power_limit(int core);
 void rapl_before (FILE * , int);
-void rapl_after  (FILE * , int);
+double rapl_after  (FILE * , int);
