@@ -2,7 +2,7 @@ public class QuickSort {
 
     // Main QuickSort function
     public static void quickSort(int[] A, int p, int r) {
-        if (p <= r) {
+        if (p < r) {
             int q = partition(A, p, r);
             quickSort(A, p, q - 1);
             quickSort(A, q + 1, r);
@@ -93,7 +93,7 @@ public class QuickSort {
     public static void main(String[] args) {
 
         int[] arr = Utils.fileToArray(args[0]);
-        quickSort(arr, 0, arr.length);
+        mquickSort(arr);
 
     }
 

@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
@@ -40,20 +42,27 @@ public class GenerateArrays {
     }
 
     public static int[] generateQuickSortBest(int size) {
-        int[] arr = generateRandom(size);
-        quickHelper(arr, 0, size - 1);
+        int[] arr = generateSorted(size);
+        quickbesthelper(arr, 0, size);
         return arr;
     }
 
-    // public static void quickbesthelper(int[] arr, int start, int end) {
-    //     if (end <= start) {
-    //         return;
-    //     }
+    private static void quickbesthelper(int[] arr, int start, int end) {
+        if (end - start < 3) {
+            return;
+        }
+        int mid = start + (end - start - 1)/2;
 
-    //     quickbesthelper(arr, start, idx - 1);
-    //     quickbesthelper(arr, idx + 1, end);
-    // }
 
+        quickbesthelper(arr, start, mid);
+
+        int temp = arr[end - 1];
+        arr[end - 1] = arr[mid];
+        arr[mid] = temp;
+
+        quickbesthelper(arr, mid + 1, end);
+
+    }
 
     public static void quickHelper(int[] arr, int start, int end) {
         if (end <= start) {
@@ -144,8 +153,16 @@ public class GenerateArrays {
             // int[] alt = GenerateArrays.generateMergeSortWorstCase(size);
             // Utils.arrToFile(alt, dir + "alt_" + size);
 
-            int[] quickbest = GenerateArrays.generateQuickSortBest(size);
-            Utils.arrToFile(quickbest, dir + "qb_" + size);
+            // int[] quickbest = GenerateArrays.generateQuickSortBest(size);
+            // Utils.arrToFile(quickbest, dir + "qb_" + size);
+
+            // int[] css = GenerateArrays.generateRandom(size);
+            // Utils.arrToFile(css, dir + "randcss_" + size);
+            // BufferedWriter out = new BufferedWriter(new FileWriter(dir + "randcss_" + size + "_k"));
+            // MergeSort.mergeSort(css, 0, size - 1);
+            // out.write(css[size - 1] + "");
+            // out.close();
+
 
             if (size < 100_000) {
                 size += 25_000;

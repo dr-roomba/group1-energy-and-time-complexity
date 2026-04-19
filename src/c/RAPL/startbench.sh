@@ -1,5 +1,5 @@
-dir=path/to/dir/containing/arrays
-CP=path/to/java/classes
+dir=../../../bin/
+CP=../../main/java/arrays/
 
 echo "BubbleSort"
 . ./bubblesort.sh

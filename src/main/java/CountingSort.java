@@ -19,8 +19,8 @@ public class CountingSort {
     public static void main(String[] args) {
 
         int[] arr = Utils.fileToArray(args[0]);
-        int[] out = new int[100000000];
-        CountingSort(arr, out, out.length);
+        int[] out = new int[arr.length];
+        CountingSort(arr, out, Integer.parseInt(args[1]));
 
     }
 

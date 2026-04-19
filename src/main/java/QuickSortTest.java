@@ -13,6 +13,7 @@ public class QuickSortTest {
             A[i] = random.nextInt(100);
         }
         QuickSort.quickSort(A, 0, A.length - 1);
+        System.out.println(Utils.arrToString(A));
         for (int i = 1; i < A.length; i++) {
             assertTrue(A[i] >= A[i-1], "Array is not sorted at index " + i);
         }
