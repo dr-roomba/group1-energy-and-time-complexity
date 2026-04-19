@@ -80,6 +80,24 @@ public class GenerateArrays {
 
     }
 
+    public static int[] generateCSB(int size) {
+        int[] arr = new int[size];
+        Random random = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(1, 100000001);
+        }
+        return arr;
+    }
+
+    public static int[] generateCSS(int size) {
+        int[] arr = new int[size];
+        Random random = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(1, 11);
+        }
+        return arr;
+    }
+
     /**
      * Generates a worst-case array for Merge Sort of a given size.
      */
@@ -156,7 +174,14 @@ public class GenerateArrays {
             // int[] quickbest = GenerateArrays.generateQuickSortBest(size);
             // Utils.arrToFile(quickbest, dir + "qb_" + size);
 
-            // int[] css = GenerateArrays.generateRandom(size);
+            // int[] csb = GenerateArrays.generateCSB(size);
+            // Utils.arrToFile(csb, dir + "randcsb_" + size);
+            // BufferedWriter out = new BufferedWriter(new FileWriter(dir + "randcsb_" + size + "_k"));
+            // MergeSort.mergeSort(csb, 0, size - 1);
+            // out.write(csb[size - 1] + "");
+            // out.close();
+
+            // int[] css = GenerateArrays.generateCSS(size);
             // Utils.arrToFile(css, dir + "randcss_" + size);
             // BufferedWriter out = new BufferedWriter(new FileWriter(dir + "randcss_" + size + "_k"));
             // MergeSort.mergeSort(css, 0, size - 1);
