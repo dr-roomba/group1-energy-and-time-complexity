@@ -3,8 +3,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
 public class Utils {
@@ -21,6 +19,7 @@ public class Utils {
 
     }
 
+    // Writes an array to a file with each value delimited by a comma
     public static void arrToFile(int[] arr, String filename) throws IOException{
         
         BufferedWriter out = new BufferedWriter(new FileWriter(filename));

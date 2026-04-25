@@ -48,6 +48,7 @@ int main (int argc, char **argv)
   double avgTime = 0;
   double energy;
   
+  // run command ntimes and calculate average.
   for (i = 0 ; i < ntimes ; i++)
     {  
  
@@ -83,6 +84,7 @@ int main (int argc, char **argv)
     }
     avgEnergy /= ntimes;
     avgTime /= ntimes;
+    // save testname, average energy, average time
     fprintf(fp,"%s,%.18lf,%G\n",test, avgEnergy, avgTime);
 
     

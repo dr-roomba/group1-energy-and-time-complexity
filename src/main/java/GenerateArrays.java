@@ -1,5 +1,3 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
@@ -29,6 +27,7 @@ public class GenerateArrays {
         return arr;
     }
 
+    // takes a random array and calls quicksort on alternating segments to partially sort it
     public static int[] generatePartiallySorted(int size) {
 
         int[] arr = generateRandom(size);
@@ -41,6 +40,7 @@ public class GenerateArrays {
 
     }
 
+    // takes a sorted array and evenly paritions it for quicksort best case
     public static int[] generateQuickSortBest(int size) {
         int[] arr = generateSorted(size);
         quickbesthelper(arr, 0, size);
@@ -53,33 +53,20 @@ public class GenerateArrays {
         }
         int mid = start + (end - start - 1)/2;
 
-
+        // recursivly generate first half
         quickbesthelper(arr, start, mid);
 
+        // move middle element to pivot postion.
         int temp = arr[end - 1];
         arr[end - 1] = arr[mid];
         arr[mid] = temp;
 
+        // recursivly generate last half
         quickbesthelper(arr, mid + 1, end);
 
     }
 
-    public static void quickHelper(int[] arr, int start, int end) {
-        if (end <= start) {
-            return;
-        }
-
-        int idx = QuickSort.partion(arr, start, end);
-        int temp = arr[start];
-        arr[start] = arr[idx];
-        arr[idx] = temp;
-
-        int j = QuickSort.partion(arr, start, end);
-        quickHelper(arr, start, j-1);
-        quickHelper(arr, j + 1, end);
-
-    }
-
+    // Generate a random array with max value 100 000 000
     public static int[] generateCSB(int size) {
         int[] arr = new int[size];
         Random random = new Random();
@@ -89,6 +76,7 @@ public class GenerateArrays {
         return arr;
     }
 
+    // Generate a random array with max value 10
     public static int[] generateCSS(int size) {
         int[] arr = new int[size];
         Random random = new Random();
